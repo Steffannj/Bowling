@@ -1,0 +1,286 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~toastr/toastr.scss";
+
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: #252525;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+
+  .fa-bowling-ball{
+    color: white;
+    animation: rotation 2s infinite linear;
+  }
+
+  .title {
+    color: #FFF;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.page-host {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+@media print {
+  .page-host {
+    position: absolute;
+    left: 10px;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+    overflow-y: inherit;
+    overflow-x: inherit;
+  }
+}
+
+section {
+  margin: 0 20px;
+  height: 100%;
+
+  .row {
+    height: 91vh;
+  }
+}
+
+/* animate page transitions */
+section.au-enter-active {
+  -webkit-animation: fadeInRight 1s;
+  animation: fadeInRight 1s;
+}
+
+div.au-stagger {
+  /* 50ms will be applied between each successive enter operation */
+  -webkit-animation-delay: 50ms;
+  animation-delay: 50ms;
+}
+
+.players-form-wrapper {
+  background-color: teal;
+  height: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  label {
+    color: white;
+    margin: 0;
+  }
+
+  .players-input {
+    display: flex;
+    align-items: center;
+
+    label {
+      flex: 1;
+    }
+
+    input {
+      flex: 4;
+    }
+  }
+}
+
+.draw-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #133328;
+}
+
+.draw {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  color: white;
+
+  .teams {
+    display: grid;
+    grid-template-columns: repeat(1, 250px);
+    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+
+    .team {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .team-title {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .card {
+        height: 100px;
+        width: 100px;
+        background-color: #70818f;
+      }
+
+      .drawed {
+        animation: cardAnimation 2s forwards;
+      }
+    }
+  }
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  .card {
+    margin-top: 10px;
+    height: 100px;
+    width: 100px;
+    transition: opacity 1s ease-out;
+
+    &.drawed {
+      opacity: 0;
+    }
+  }
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #CCC;
+  border-radius: 8px;
+  margin-right: 5px;
+  text-align: center;
+  background-color: #337ab7;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  color: white;
+}
+
+
+
+@keyframes cardAnimation {
+  0% {
+    color: transparent;
+  }
+
+  75% {
+    background-color: #70818f;
+    color: transparent;
+  }
+
+  100% {
+    color: white;
+    background-color: #337ab7;
+  }
+}
+
+.card .content {
+  margin-top: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .content .name {
+  font-size: 18px;
+  width: 100%;
+}
+
+
+/* animation definitions */
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0)
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0)
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

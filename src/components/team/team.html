@@ -1,0 +1,18 @@
+<template>
+  <require from="../player/player"></require>
+  <div class="d-flex">
+    <div class="team-title">
+      Team: ${team.id}
+    </div>
+    <div class="card ${team.player1 ? 'drawed' : ''}" id="card-${team.player1.id}">
+      <div class="content">
+        <p class="name">${team.player1.name}</p>
+      </div>
+    </div>
+    <div class="card ${team.player2 ? 'drawed' : ''}" id="card-${team.player2.id}">
+      <div class="content" >
+        <p class="name">${team.player2.name}</p>
+      </div>
+    </div>
+  </div>
+</template>

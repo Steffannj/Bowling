@@ -1,0 +1,14 @@
+<template>
+  <require from="../team/team"></require>
+  <require from="../player/player"></require>
+  <div class="card-container">
+      <compose view="../player/player.html" repeat.for="player of players"></compose>
+  </div>
+  <div class="draw">
+    <div class="teams" repeat.for="team of teams">
+      <div class="team" id="area-${team.id}">
+        <compose view="../team/team.html"></compose>
+      </div>
+    </div>
+  </div>
+</template>
