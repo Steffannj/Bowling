@@ -1,0 +1,13 @@
+.player-name {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  label {
+    flex: 1;
+  }
+
+  input {
+    flex: 3;
+  }
+}

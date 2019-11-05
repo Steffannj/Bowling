@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Pool of players module should add player in players array if add is called 1`] = `
+Object {
+  "0": Player {
+    "drawed": false,
+    "name": "Stefan",
+  },
+}
+`;

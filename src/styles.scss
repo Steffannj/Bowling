@@ -12,9 +12,10 @@ body {
   display: flex;
   align-items: center;
 
-  .fa-bowling-ball{
+  .fa-bowling-ball {
+    position: absolute;
     color: white;
-    animation: rotation 2s infinite linear;
+    animation: rotation 1s infinite linear, moveBall 5s infinite linear;
   }
 
   .title {
@@ -26,14 +27,27 @@ body {
     margin: 0 auto;
   }
 }
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(359deg);
   }
 }
+
+@keyframes moveBall {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
 .page-host {
   position: absolute;
   left: 0;

@@ -1,28 +1,13 @@
 <template>
   <require from="./components/draw/draw"></require>
+  <require from="./components/poolOfPlayers/poolOfPlayers"></require>
   <section class="au-animate">
     <div class="row">
       <div class="col-3 players-form-wrapper">
-        <form class="h-100" role="form" submit.delegate="submit()">
-            <div class="form-group text-center">
-              <label class="mt-2 mb-2" for="fn">Number of players</label>
-              <input type="number" value.bind="numberOfPlayers & debounce: 400 & validate" class="form-control"
-                placeholder="Enter number of players" disabled.bind="drawStarted">
-            </div>
-            <div class="overflow-auto h-75">
-            <div class="form-group players-input" repeat.for="player of players">
-              <label>Player ${player.id}</label>
-              <input type="string" value.bind="player.name & validate" class="form-control"
-                placeholder="Enter player ${player.id} name" disabled.bind="drawStarted">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-success w-100 mt-1 mb-1" disabled.bind="!drawReady" show.bind="!drawEnded">Start
-            draw</button>
-            <button class="btn btn-danger w-100 mt-1 mb-1" click.delegate="resetDraw()" show.bind="drawEnded">Reset draw</button>
-        </form>
+      <pool-of-players></pool-of-players>
       </div>
       <div class="col-9 draw-wrapper">
-        <draw draw-started.bind="drawStarted" draw-ended.bind="drawEnded" players.bind="players"></draw>
+        <draw></draw>
       </div>
     </div>
   </section>

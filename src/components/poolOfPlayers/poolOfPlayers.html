@@ -1,0 +1,21 @@
+<template>
+  <require from="./poolOfPlayers.scss"></require>
+  <form class="h-100" role="form" submit.delegate="startDraw()">
+    <div class="form-group player-name">
+      <label>Player name</label>
+      <input type="text" value.bind="playerName" class="form-control"
+        placeholder="Enter player name" disabled.bind="isBusy">
+        <button class="btn btn-success" click.delegate="add(playerName)"  disabled.bind="isBusy">Add</button>
+    </div>
+    <div class="overflow-auto h-75">
+      <div class="form-group players-input" repeat.for="player of players">
+        <label>${player.name}</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success w-100 mt-1 mb-1" disabled.bind="!canDraw || isBusy"
+      show.bind="!drawCompleted">Start
+      draw</button>
+    <button class="btn btn-danger w-100 mt-1 mb-1" click.delegate="reset()" show.bind="drawCompleted">Reset
+      draw</button>
+  </form>
+</template>

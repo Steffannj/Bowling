@@ -1,12 +1,11 @@
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Team } from './../team/team';
 import { Player } from './../player/player';
-import { bindable, inject } from "aurelia-framework";
+import { inject, observable } from "aurelia-framework";
 
 @inject(EventAggregator)
 export class Draw {
-  @bindable players: Player[];
-  @bindable drawStarted: boolean;
+  @observable players: Player[];
   availablePlayersInDraw: Player[];
   numOfTeams: number;
   teams: Array<Team>;
@@ -14,6 +13,18 @@ export class Draw {
 
   constructor(ea: EventAggregator) {
     this.ea = ea;
+  }
+
+  attached() {
+    this.ea.subscribe('addPlayer', (players) => {
+      this.players = players;
+    });
+    this.ea.subscribe('startDraw', () => {
+      this.startDraw();
+    });
+    this.ea.subscribe('drawReseted', () => {
+      this.teams = [];
+    });
   }
 
   playersChanged() {
@@ -29,19 +40,17 @@ export class Draw {
     }
   }
 
-  drawStartedChanged(n, o) {
-    if (n) {
-      let interval = setInterval(() => {
-        let rnd = Math.floor(Math.random() * this.availablePlayersInDraw.length);
-        let player = this.availablePlayersInDraw[rnd];
-        player.drawed = true;
-        this.putPlayerInTeam(player);
-        if (this.availablePlayersInDraw.length == 0) {
-          this.ea.publish("drawEnded", true);
-          clearInterval(interval);
-        }
-      }, 2500);
-    }
+  startDraw() {
+    let interval = setInterval(() => {
+      let rnd = Math.floor(Math.random() * this.availablePlayersInDraw.length);
+      let player = this.availablePlayersInDraw[rnd];
+      player.drawed = true;
+      this.putPlayerInTeam(player);
+      if (this.availablePlayersInDraw.length == 0) {
+        this.ea.publish("drawCompleted", true);
+        clearInterval(interval);
+      }
+    }, 2500);
   }
 
   private putPlayerInTeam(player: Player) {
